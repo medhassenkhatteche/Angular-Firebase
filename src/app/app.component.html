@@ -1,0 +1,47 @@
+<!-- Toolbar -->
+<mat-toolbar color="primary" class="header">
+  <div>Suivie des patients</div>
+  <span class="nav-tool-items">
+    <mat-icon (click)="sidenav.toggle()" class="hamburger">Menu</mat-icon>
+  </span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <!-- Sidenav -->
+  <mat-sidenav #sidenav [mode]="isBiggerScreen() ? 'over' : 'side'" [(opened)]="opened" [fixedInViewport]="true" fixedTopGap="55">
+    <mat-nav-list>
+      <a mat-list-item routerLinkActive="active" routerLink="/ajout-patient">
+        <mat-icon>add</mat-icon> Ajouter un patient
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient">
+        <mat-icon>format_list_bulleted</mat-icon> Liste des patients
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-rappel"  style="background-color: red;">
+        <mat-icon>priority_high</mat-icon> Patients à rappeler!
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-recdemini">
+        <mat-icon>contact_mail</mat-icon> Demandes initiales
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-recpho"  style="background-color: pink;">
+        <mat-icon>add_a_photo</mat-icon> Réception des photos
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-devdef"  style="background-color: lightskyblue;">
+        <mat-icon>note_add</mat-icon> Devis definitif
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-preconfirmes"  style="background-color: yellowgreen;">
+        <mat-icon>subject</mat-icon> Patients préconfirmés
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-confirmes"  style="background-color: darkgreen;">
+        <mat-icon>playlist_add_check</mat-icon> Patients confirmés
+      </a>
+      <a mat-list-item routerLinkActive="active" routerLink="/liste-patient-classes"  style="background-color: lightgray;">
+        <mat-icon>horizontal_split</mat-icon> Patients classés
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <!-- Main content -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

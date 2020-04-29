@@ -1,0 +1,42 @@
+/*Style du conteneur du tableau*/
+.example-container {
+  width: auto;
+  overflow: auto;
+}
+
+/*Style du tableau*/
+table {
+  width: 3500px;
+}
+
+
+
+/*Style du filtre*/
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+/*Style des colomnes du tableau*/
+td.mat-cell, th.mat-header-cell {
+  border-right: 1px solid #e0e0e0;
+  padding: 16px 10px;
+}
+
+th.mat-header-cell{
+  font-size: 100%;
+  font-weight: bold;
+}
+
+th.mat-column-position, td.mat-column-position {
+  padding-left: 8px;
+}
+
+.etape2{
+  background: lightskyblue;
+}
+
+.export-container {
+  text-align: right;
+  margin-bottom: 20px;
+}

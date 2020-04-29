@@ -1,0 +1,162 @@
+<!-- Title group  -->
+<div class="title-group">
+  <h1 class="mat-h1">Ajouter un nouveau patient</h1>
+  <mat-divider fxFlex="1 0"></mat-divider>
+</div>
+
+<!-- Book form -->
+<div class="inner-wrapper">
+  <form [formGroup]="patientForm" (ngSubmit)="submitPatient()" #resetPatientForm="ngForm" novalidate>
+    <!-- Left block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+        <!-- Date réception demande -->
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date de réception de demande"
+                 formControlName="date_reception_demande">
+        </mat-form-field>
+
+        <!-- Numéro du dossier -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Numéro du dossier" formControlName="num_dossier">
+        </mat-form-field>
+
+        <!-- Nom complet -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Nom complet" formControlName="nom_complet" required>
+          <mat-error *ngIf="handleError('nom_complet', 'required')">
+            Vous devez inserer le <strong>nom complet du patient</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- E-mail -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Adresse mail" formControlName="adresse_mail" type="email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <mat-error *ngIf="handleError('adresse_mail', 'required')">
+            Vous devez inserer l'<strong>@ email du patient</strong>
+          </mat-error>
+          <mat-error *ngIf="handleError('adresse_mail', 'pattern')">
+            Adresse mail non valide!
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Numéro de téléphone -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Numéro de téléphone" formControlName="num_tel">
+        </mat-form-field>
+
+        <!-- Pays -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Pays" formControlName="pays">
+        </mat-form-field>
+
+        <!-- Interventions -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Interventions" formControlName="interventions" required>
+          <mat-error *ngIf="handleError('interventions', 'required')">
+            Vous devez indiquer le ou les <strong>interventions!</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Période souhaitée -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Période souhaitée" formControlName="periode_souhaite">
+        </mat-form-field>
+
+        <!-- Offre -->
+        <mat-form-field>
+          <mat-label>Offre</mat-label>
+          <mat-select [(value)]="selectedBindingType" formControlName="offre" required>
+            <mat-option [value]="bindingType" *ngFor="let bindingType of BindingType">{{bindingType}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('offre', 'required')">
+            Vous devez précisez l'offre du patient!
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Date émission -->
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date émission"
+                 formControlName="date_emission">
+        </mat-form-field>
+
+      </div>
+    </mat-card>
+
+    <!-- Right block -->
+    <mat-card>
+      <div class="controlers-wrapper">
+
+        <!-- Devis -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Devis" formControlName="devis">
+        </mat-form-field>
+
+        <!-- Séjours -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Séjour" formControlName="sejour">
+        </mat-form-field>
+
+        <!-- Date du premier rappel -->
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date du premier rappel"
+                 formControlName="date_rappel1">
+        </mat-form-field>
+
+        <!-- Rappel1 -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Rappel 1" formControlName="rappel1">
+        </mat-form-field>
+
+        <!-- Date du deuxieme rappel -->
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date du deuxieme rappel"
+                 formControlName="date_rappel2">
+        </mat-form-field>
+
+        <!-- Rappel2 -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Rappel 2" formControlName="rappel2">
+        </mat-form-field>
+
+        <!-- Date du troisieme rappel -->
+        <mat-form-field>
+          <input matInput type="date" placeholder="Date du troisieme rappel"
+                 formControlName="date_rappel3">
+        </mat-form-field>
+
+        <!-- Rappel3 -->
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Rappel 3" formControlName="rappel3">
+        </mat-form-field>
+
+        <!-- Etape -->
+        <mat-form-field>
+          <mat-label>Etape</mat-label>
+          <mat-select [(value)]="selectedEtapeType" formControlName="etape" required>
+            <mat-option [value]="etapeType" *ngFor="let etapeType of EtapeType">{{etapeType}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="handleError('etape', 'required')">
+            Vous devez précisez l'étape du dossier du patient!
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Remarque du commercial -->
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Remarques du commercial!" formControlName="remarque_commercial" rows="3"></textarea>
+        </mat-form-field>
+
+      </div>
+    </mat-card>
+
+    <!-- Submit & Reset -->
+    <mat-card>
+      <div class="full-wrapper button-wrapper">
+        <div class="button-wrapper">
+          <button mat-flat-button color="warn">Ajouter</button>
+          <button mat-flat-button color="war" (click)="resetForm()">Effacer</button>
+        </div>
+      </div>
+    </mat-card>
+  </form>
+</div>
